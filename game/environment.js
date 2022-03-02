@@ -33,7 +33,7 @@ export class Environment {
 
     // フィールドのライフを全て消す
     reset() {
-        this,this.generation = 1;
+        this.generation = 1;
         this._canvas.clearAll();
         this._field.clear();
     };
