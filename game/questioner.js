@@ -16,7 +16,7 @@ export class Questioner {
     };
 
     // 解答の正誤を判定する
-    judgeAnswer() {
+    judgeAnswer(environment) {
         return new Boolean();
     };
 }
