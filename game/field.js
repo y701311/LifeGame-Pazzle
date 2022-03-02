@@ -26,6 +26,9 @@ export class Field {
         return 0;
     };
 
+    // 盤面のライフの数を数えて返す
+    countLives() { };
+
     // 盤面をライフが無い状態にする
     clear() { };
 
