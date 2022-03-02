@@ -15,6 +15,7 @@ export class App {
         this.questioner = new Questioner();
         // 世代の更新頻度　何ミリ秒ごとに更新するか
         this.updateInterval = 200;
+        this.generationId = document.getElementById("generation");
 
         // 解答用の盤面のクリック時の処理
         this.answerCanvas.onClick = (x, y) => { };
@@ -30,7 +31,7 @@ export class App {
     };
 
     start() {
-        this.environment.start();
+        this.environment.start(this.updateInterval, this.generationId);
     };
 
     stop() {
