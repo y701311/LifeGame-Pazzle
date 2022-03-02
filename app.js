@@ -25,7 +25,8 @@ export class App {
         document.getElementById("stopButton").addEventListener("click", () => this.stop(), false);
         document.getElementById("resetButton").addEventListener("click", () => this.reset(), false);
         document.getElementById("ploblemGenerateButton").addEventListener("click", () => this.generatePloblem(), false);
-        document.getElementById("updateInterval").onchange = this.updateInterval();
+        document.getElementById("answerButton").addEventListener("click", () => this.judgeAnswer(), false);
+        document.getElementById("updateInterval").onchange = this.setUpdateInterval();
     };
 
     start() {
