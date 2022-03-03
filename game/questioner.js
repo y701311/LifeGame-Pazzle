@@ -16,7 +16,8 @@ export class Questioner {
     };
 
     // 解答の正誤を判定する
-    judgeAnswer(environment) {
-        return new Boolean();
+    // 解答の盤面を受け取り、正解ならtrueと問題と盤面が一致する世代を、不正解ならfalseとgenerationLimitを返す
+    judgeAnswer(answerField) {
+        return new Boolean(), 0;
     };
 }
