@@ -2,8 +2,10 @@ import { Field } from "./field";
 
 export class Questioner {
     constructor() {
+        // 何世代以上で問題の盤面にしなければならないか
+        this.generationLowerLimit = 2;
         // 何世代までに問題の盤面にしなければならないか
-        this.generationLimit = 20;
+        this.generationUpperLimit = 20;
         // 問題の盤面
         this.ploblem = {};
         // 問題の解答例
