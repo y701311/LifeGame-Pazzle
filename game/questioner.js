@@ -24,7 +24,7 @@ export class Questioner {
         let generation = 1;
         let judge = false;
         let gene = this.generationUpperLimit;
-        let count = 0
+        let count = 0;
 
 
         while (generation <= this.generationUpperLimit) {
