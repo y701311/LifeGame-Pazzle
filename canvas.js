@@ -39,8 +39,8 @@ export class Canvas {
         this.context.strokeStyle = "#aaaaaa";
         this.context.lineWidth = 0.1;
         this.context.beginPath();
-        this.context.moveTo(x + 0.5, 0);
-        this.context.lineTo(x + 0.5, this.height);
+        this.context.moveTo(x, 0);
+        this.context.lineTo(x, this.height);
         this.context.closePath();
         this.context.stroke();
     };
@@ -50,8 +50,8 @@ export class Canvas {
         this.context.strokeStyle = "#aaaaaa";
         this.context.lineWidth = 0.1;
         this.context.beginPath();
-        this.context.moveTo(0, y + 0.5);
-        this.context.lineTo(this.width, y + 0.5);
+        this.context.moveTo(0, y);
+        this.context.lineTo(this.width, y);
         this.context.closePath();
         this.context.stroke();
     };
