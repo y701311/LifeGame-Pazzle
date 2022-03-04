@@ -16,7 +16,8 @@ export class Questioner {
     };
 
     // 解答の正誤を判定する
-    // 解答の盤面を受け取り、正解ならtrueと問題と盤面が一致する世代を、不正解ならfalseとgenerationLimitを返す
+    // 解答の盤面を受け取り、正解ならtrueと問題と盤面が一致する世代を、
+    // 不正解ならfalseとgenerationLimitまたはgenerationLimit以下の盤面のライフが無くなる世代を返す
     judgeAnswer(answerField) {
         let generation = 1;
         let livesNum = answerField.countLives();
