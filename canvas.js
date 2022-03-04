@@ -10,7 +10,7 @@ export class Canvas {
         this.context.canvas.height = height * this.cellSize;
         this.width = this.context.canvas.width;
         this.height = this.context.canvas.height;
-        this.clear();
+        this.clearAll();
 
         this.onClick = function (x, y) { };
 
