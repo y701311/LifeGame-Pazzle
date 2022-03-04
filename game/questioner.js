@@ -24,29 +24,32 @@ export class Questioner {
         let generation = 1;
         let livesNum = answerField.countLives();
         let judge = false;
-        let Gene = this.generationLimit;
-        let Count = 0
+        let gene = this.generationUpperLimit;
+        let count = 0
 
 
-        while (generation <= this.generationLimit) {
+        while (generation <= this.generationUpperLimit) {
             for (let h = 0; h < answerField.height; h++) {
                 for (let w = 0; w < answerField.width; w++) {
                     if (answerField.field[h][w].isAlive == this.ploblem[h][w].isAlive) {
-                        Count++;
+                        count++;
                     }
                 }
             }
-            if(Count == answerField.width*answerField.height){
+            if((count == answerField.width*answerField.height)&&(generation >=this.generationLowerLimit)){
+                
                 judge = true;
-                Gene = generation;
+                gene = generation;
                 break;
+            }else if(count == 0){
+                gene = generation;
             }
             answerField.updateLivesStatus();
             generation++;
         }
 
 
-        return { isCorrect: judge, generation: Gene };
+        return { isCorrect: judge, generation: gene };
 
         
     };
