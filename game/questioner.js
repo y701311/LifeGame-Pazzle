@@ -29,28 +29,37 @@ export class Questioner {
 
 
         while (generation <= this.generationUpperLimit) {
+
             for (let h = 0; h < answerField.height; h++) {
                 for (let w = 0; w < answerField.width; w++) {
                     if (answerField.field[h][w].isAlive == this.ploblem[h][w].isAlive) {
                         count++;
                     }
+
                 }
             }
-            if((count == answerField.width*answerField.height)&&(generation >=this.generationLowerLimit)){
-                
+
+            if ((count == answerField.width * answerField.height) && (generation >= this.generationLowerLimit)) {
+
                 judge = true;
                 gene = generation;
                 break;
-            }else if(count == 0){
-                gene = generation;
             }
+
+            if (answerField.countLives == 0) {
+                gene = generation;
+                break;
+            }
+
             answerField.updateLivesStatus();
             generation++;
+            count = 0;
+
         }
 
 
         return { isCorrect: judge, generation: gene };
 
-        
+
     };
 }
