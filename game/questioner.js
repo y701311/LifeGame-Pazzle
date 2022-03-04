@@ -22,13 +22,13 @@ export class Questioner {
     // 不正解ならfalseとgenerationLimitまたはgenerationLimit以下の盤面のライフが無くなる世代を返す
     judgeAnswer(answerField) {
         let generation = 1;
-        let livesNum = answerField.countLives();
         let judge = false;
         let gene = this.generationUpperLimit;
         let count = 0
 
 
         while (generation <= this.generationUpperLimit) {
+            count = 0;
 
             for (let h = 0; h < answerField.height; h++) {
                 for (let w = 0; w < answerField.width; w++) {
@@ -46,14 +46,14 @@ export class Questioner {
                 break;
             }
 
-            if (answerField.countLives == 0) {
+            if (answerField.countLives() == 0) {
                 gene = generation;
                 break;
             }
 
             answerField.updateLivesStatus();
             generation++;
-            count = 0;
+            
 
         }
 
