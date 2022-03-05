@@ -31,7 +31,7 @@ export class Canvas {
 
     drawPoint(location, color) {
         this.context.fillStyle = color;
-        this.context.fillRect(location.x * this.cellsize + 1, location.y * this.cellsize + 1, this.cellsize - 1, this.cellsize - 1);
+        this.context.fillRect(location.x * this.cellSize + 1, location.y * this.cellSize + 1, this.cellSize - 1, this.cellSize - 1);
     };
 
     // 縦の罫線を描く
