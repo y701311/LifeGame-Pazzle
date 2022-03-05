@@ -14,6 +14,7 @@ export class Environment {
 
     // 世代の更新を開始
     start(updateInterval, generationId) {
+        clearInterval(this.timer);
         this.timer = setInterval(() => {
             let livesNum = this._field.countLives();
             if (livesNum == 0) {
