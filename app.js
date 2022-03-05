@@ -4,7 +4,7 @@ import { Field } from "./game/field.js";
 import { Questioner } from "./game/questioner.js";
 import { WIDTH, HEIGHT } from "./appConfig.js";
 
-export class App {
+class App {
     constructor() {
         // 問題の盤面
         this.problemCanvas = new Canvas("ploblemCanvas", WIDTH, HEIGHT);
@@ -49,3 +49,12 @@ export class App {
 
     setUpdateInterval() { };
 }
+
+function main(){
+    window.onload = function(){
+        let app = new App();
+        app.run();
+    };
+}
+
+main();
