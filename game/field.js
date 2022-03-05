@@ -19,7 +19,10 @@ export class Field {
     setLife(location) { };
 
     // 受け取った場所のライフの存在、非存在を反転させる
-    reverse(location) { };
+    reverse(location) {
+        this.field[location.y][location.x].toggle();
+        this.onChange(location, this.field[location.y][location.x]);
+    };
 
     // 受け取った場所の周囲のライフの数を数えて返す
     countAroundLives(location) {
