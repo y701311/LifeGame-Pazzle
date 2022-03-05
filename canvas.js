@@ -1,5 +1,5 @@
 import { Location } from "./game/location.js";
-import { ALIVE, NOT_ALIVE } from "./appConfig.js";
+import { ALIVE, NOT_ALIVE, LINE_COLOR } from "./appConfig.js";
 
 export class Canvas {
     constructor(id, width, height) {
@@ -36,7 +36,7 @@ export class Canvas {
 
     // 縦の罫線を描く
     drawVirticalLine(x) {
-        this.context.strokeStyle = "#aaaaaa";
+        this.context.strokeStyle = LINE_COLOR;
         this.context.lineWidth = 0.1;
         this.context.beginPath();
         this.context.moveTo(x, 0);
@@ -47,7 +47,7 @@ export class Canvas {
 
     // 横の罫線を描く
     drawHorizontialLine(y) {
-        this.context.strokeStyle = "#aaaaaa";
+        this.context.strokeStyle = LINE_COLOR;
         this.context.lineWidth = 0.1;
         this.context.beginPath();
         this.context.moveTo(0, y);
