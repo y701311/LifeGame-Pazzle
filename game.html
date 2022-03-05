@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="ploblemCanvas"></canvas>
+    </div>
+    <div>
+        <canvas id="answerCanvas"></canvas>
+    </div>
+
+    <div>第<span id="generation">1</span>世代</div>
+
+    <div>
+        <select id="updateInterval">
+            <option value="100">100</option>
+            <option value="200" selected>200</option>
+            <option value="500">500</option>
+        </select>
+    </div>
+
+    <div>
+        <input type="button" value="start" id="startButton">
+        <input type="button" value="stop" id="stopButton">
+        <input type="button" value="reset" id="resetButton">
+    </div>
+    <div>
+        <input type="button" value="問題をセット" id="ploblemGenerateButton">
+        <input type="button" value="解答" id="answerButton">
+    </div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
