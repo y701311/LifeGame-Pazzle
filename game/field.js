@@ -12,7 +12,7 @@ export class Field {
             }
         }
 
-        this.onChange = {};
+        this.onChange = function (location, cell) { };
     }
 
     // 受け取った場所にライフを置く
