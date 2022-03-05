@@ -1,8 +1,8 @@
-import { Canvas } from "./canvas";
-import { Environment } from "./game/environment";
-import { Field } from "./game/field";
-import { Questioner } from "./game/questioner";
-import { WIDTH, HEIGHT } from "./appConfig";
+import { Canvas } from "./canvas.js";
+import { Environment } from "./game/environment.js";
+import { Field } from "./game/field.js";
+import { Questioner } from "./game/questioner.js";
+import { WIDTH, HEIGHT } from "./appConfig.js";
 
 export class App {
     constructor() {

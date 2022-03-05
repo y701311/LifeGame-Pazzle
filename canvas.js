@@ -1,5 +1,5 @@
-import { Location } from "./game/location";
-import { ALIVE, NOT_ALIVE } from "./appConfig";
+import { Location } from "./game/location.js";
+import { ALIVE, NOT_ALIVE } from "./appConfig.js";
 
 export class Canvas {
     constructor(id, width, height) {
