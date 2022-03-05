@@ -7,7 +7,7 @@ export class Environment {
         this.timer = {};
 
         // 状態が変化したときの色を変える処理
-        this._field.onChenge = (location, cell) => {
+        this._field.onChange = (location, cell) => {
             this._canvas.drawCell(location, cell);
         };
     }
