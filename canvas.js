@@ -59,10 +59,10 @@ export class Canvas {
     // 全てクリア
     clearAll() {
         this.context.clearRect(0, 0, this.width, this.height);
-        for (let x = 0; x < this.width; x += this.cellSize) {
+        for (let x = 0; x <= this.width; x += this.cellSize) {
             this.drawVirticalLine(x);
         }
-        for (let y = 0; y < this.height; y += this.cellSize) {
+        for (let y = 0; y <= this.height; y += this.cellSize) {
             this.drawHorizontialLine(y);
         }
     };
