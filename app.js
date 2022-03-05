@@ -43,7 +43,7 @@ class App {
 
     reset() {
         this.environment.stop();
-        this.environment.reset();
+        this.environment.reset(this.generationId);
     };
 
     generatePloblem() { };

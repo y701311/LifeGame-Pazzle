@@ -32,8 +32,9 @@ export class Environment {
     };
 
     // フィールドのライフを全て消す
-    reset() {
+    reset(generationId) {
         this.generation = 1;
+        generationId.innerHTML = this.generation;
         this._canvas.clearAll();
         this._field.clear();
     };
