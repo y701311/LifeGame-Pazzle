@@ -1,6 +1,7 @@
 import { Canvas } from "./canvas.js";
 import { Environment } from "./game/environment.js";
 import { Field } from "./game/field.js";
+import { Location } from "./game/location.js";
 import { Questioner } from "./game/questioner.js";
 import { WIDTH, HEIGHT } from "./appConfig.js";
 
@@ -18,7 +19,9 @@ class App {
         this.generationId = document.getElementById("generation");
 
         // 解答用の盤面のクリック時の処理
-        this.answerCanvas.onClick = (x, y) => { };
+        this.answerCanvas.onClick = (x, y) => {
+            this.environment._field.reverse(new Location(x, y));
+        };
     }
 
     run() {
@@ -50,8 +53,8 @@ class App {
     setUpdateInterval() { };
 }
 
-function main(){
-    window.onload = function(){
+function main() {
+    window.onload = function () {
         let app = new App();
         app.run();
     };
