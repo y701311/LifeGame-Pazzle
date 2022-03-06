@@ -74,7 +74,9 @@ class App {
         }, this.updateInterval);
     };
 
-    setUpdateInterval() { };
+    setUpdateInterval() {
+        this.updateInterval = document.getElementById("updateInterval").value;
+    };
 }
 
 function main() {
