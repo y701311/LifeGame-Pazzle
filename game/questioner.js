@@ -1,4 +1,6 @@
 import { Field } from "./field.js";
+import { Location } from "./location.js"
+import { WIDTH, HEIGHT } from "../appConfig.js"
 
 export class Questioner {
     constructor() {
@@ -6,6 +8,8 @@ export class Questioner {
         this.generationLowerLimit = 2;
         // 何世代までに問題の盤面にしなければならないか
         this.generationUpperLimit = 20;
+        // どのくらいのライフがあれば問題として成立するか
+        let livesLowerLimit = 10;
         // 問題の盤面
         this.problem = {};
         // 問題の解答例
@@ -14,7 +18,69 @@ export class Questioner {
 
     // 問題を生成する
     generateProblem() {
-        return new Field();
+        let problemField = new Field(WIDTH, HEIGHT);
+        let processField = [];
+
+        while (true) {
+            for (let generation = 0; generation <= processField.length - this.generationLowerLimit; generation++) {
+                problemField = new Field;
+                if (processField[generation + this.generationLowerLimit - 1].countLives() >= LivesLowerLimit) {
+                    return processField[generation + this.generationLowerLimit - 1];
+                } else if (generation == processField.length - this.generationLowerLimit) {
+                    generation = 0;
+                    problemField = this._getInitializeField();
+                    processField = this._processProblem(problemField);
+                }
+            }
+            let prob = this._selectProblem(problemField);
+            if (prob.selected) {
+                this.problem = prob.problem;
+                this.correctField = problemField;
+                break;
+            }
+        }
+
+        return this.problem;
+    };
+
+    // 出題する問題盤面を選ぶ
+    // 選べたらtrue、選べなかったらfalseを返す
+    _selectProblem(processField) {
+        return { selected: true, problem: processField[this.generationLowerLimit - 1] };
+    };
+
+    _getInitializeField() {
+        let problemField = new Field();
+        // ライフが置かれる確率の分子、分母
+        let numeratorOfLifeExistProbability = 2, denominatorOfLifeExistProbability = 10;
+        for (let h = 0; h < HEIGHT; h++) {
+            for (let w = 0; w < WIDTH; w++) {
+                let location = new Location(w, h);
+                let num = Math.floor(Math.random() * denominatorOfLifeExistProbability);
+                if (numeratorOfLifeExistProbability >= num) {
+                    problemField.setLife(location);
+                }
+            }
+        }
+        return problemField;
+    };
+
+    _processProblem(problemField) {
+        // 問題盤面候補を置いておくところ
+        let processField = [];
+        for (let generation = 1; generation <= this.generationUpperLimit; generation++) {
+            processField.push(JSON.parse(JSON.strintgify(problemField)));
+            if (problemField.countLives() == 0) {
+                if (generation <= this.generationLowerLimit) {
+                    problemField = getInitializeField();
+                    generation = 1;
+                } else {
+                    break;
+                }
+            }
+            problemField.updateLivesStatus();
+        }
+        return processField;
     };
 
     // 解答の正誤を判定する
