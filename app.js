@@ -48,7 +48,10 @@ class App {
 
     generatePloblem() { };
 
-    judgeAnswer() { };
+    judgeAnswer() { 
+        var c = document.getElementById('answerCanvas');
+        c.style.backgroundColor = 'lightgreen';
+    };
 
     setUpdateInterval() { };
 }

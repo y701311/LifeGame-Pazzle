@@ -3,7 +3,7 @@ import { ALIVE, NOT_ALIVE, LINE_COLOR, LINE_WIDTH } from "./appConfig.js";
 
 export class Canvas {
     constructor(id, width, height) {
-        this.cellSize = 16;
+        this.cellSize = 40;
         this.canvas = document.getElementById(id);
         this.context = this.canvas.getContext("2d");
         this.context.canvas.width = width * this.cellSize;
@@ -65,6 +65,8 @@ export class Canvas {
         for (let y = 0; y <= this.height; y += this.cellSize) {
             this.drawHorizontialLine(y);
         }
+        var c = document.getElementById('answerCanvas');
+        c.style.backgroundColor = 'transparent';
     };
 
     // 指定された場所のセルの状態を描画

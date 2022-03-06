@@ -1,5 +1,5 @@
 // 盤面の広さ
-export const WIDTH = 10, HEIGHT = 10;
+export const WIDTH = 15, HEIGHT = 15;
 
 // ライフがある、ない時の色
 export const ALIVE = "#204080", NOT_ALIVE = "#FFFFFF";

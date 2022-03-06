@@ -1,0 +1,17 @@
+.button{
+    cursor:pointer;
+}
+
+#ploblemCanvas{
+    background-color: aqua;
+    position: absolute;
+    top: 15% ;
+    right:52%;
+}
+
+#answerCanvas{
+    background-color: white;
+    position: absolute;
+    top: 15%;
+    left:52%;
+}
