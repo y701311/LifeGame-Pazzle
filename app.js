@@ -49,7 +49,7 @@ class App {
     generatePloblem() { };
 
     judgeAnswer() { 
-        document.getElementById('pop-up').checked = true;
+        document.getElementById('pop-up').checked = true; //正解だったらこの行が実行されるようにしてほしい
     };
 
     setUpdateInterval() { };
