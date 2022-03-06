@@ -107,5 +107,17 @@ export class Field {
     };
 
     // 次の世代に更新する
-    updateLivesStatus() { };
+    updateLivesStatus() {
+        for (let y = 0; y <= HEIGHT - 1; y++) {
+            for (let x = 0; x <= WIDTH - 1; x++) {
+                let aroundLives = this.countAroundLives(new Location(x, y));
+                this.field[y][x].judgeSurvive(aroundLives);
+            }
+        }
+        for (let y = 0; y <= HEIGHT - 1; y++) {
+            for (let x = 0; x <= WIDTH - 1; x++) {
+                this.field[y][x].isAlive = this.field[y][x]._nextStatus;
+            }
+        }
+    };
 }
