@@ -53,7 +53,7 @@ class App {
             for(let x = 0; x < WIDTH; x++){
                 location.x = x;
                 location.y = y;
-                this.problemCanvas.drawCell(location, problem[location.y][location.x]);
+                this.problemCanvas.drawCell(location, problem.field[location.y][location.x]);
             }
         }
     };
