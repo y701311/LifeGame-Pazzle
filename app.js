@@ -8,7 +8,7 @@ import { WIDTH, HEIGHT } from "./appConfig.js";
 class App {
     constructor() {
         // 問題の盤面
-        this.problemCanvas = new Canvas("ploblemCanvas", WIDTH, HEIGHT);
+        this.problemCanvas = new Canvas("problemCanvas", WIDTH, HEIGHT);
         // 解答用の盤面
         this.answerCanvas = new Canvas("answerCanvas", WIDTH, HEIGHT);
         // ゲームを進める環境
@@ -28,7 +28,7 @@ class App {
         document.getElementById("startButton").addEventListener("click", () => this.start(), false);
         document.getElementById("stopButton").addEventListener("click", () => this.stop(), false);
         document.getElementById("resetButton").addEventListener("click", () => this.reset(), false);
-        document.getElementById("ploblemGenerateButton").addEventListener("click", () => this.generatePloblem(), false);
+        document.getElementById("problemGenerateButton").addEventListener("click", () => this.generateProblem(), false);
         document.getElementById("answerButton").addEventListener("click", () => this.judgeAnswer(), false);
         document.getElementById("updateInterval").onchange = this.setUpdateInterval();
     };
@@ -46,7 +46,7 @@ class App {
         this.environment.reset(this.generationId);
     };
 
-    generatePloblem() { };
+    generateProblem() { };
 
     judgeAnswer() { };
 

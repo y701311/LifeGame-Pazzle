@@ -7,7 +7,7 @@ export class Questioner {
         // 何世代までに問題の盤面にしなければならないか
         this.generationUpperLimit = 20;
         // 問題の盤面
-        this.ploblem = {};
+        this.problem = {};
         // 問題の解答例
         this.correctField = {};
     }
@@ -32,7 +32,7 @@ export class Questioner {
 
             for (let h = 0; h < answerField.height; h++) {
                 for (let w = 0; w < answerField.width; w++) {
-                    if (answerField.field[h][w].isAlive == this.ploblem[h][w].isAlive) {
+                    if (answerField.field[h][w].isAlive == this.problem[h][w].isAlive) {
                         count++;
                     }
 
