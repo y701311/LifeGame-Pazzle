@@ -32,7 +32,7 @@ export class Questioner {
 
             for (let h = 0; h < answerField.height; h++) {
                 for (let w = 0; w < answerField.width; w++) {
-                    if (answerField.field[h][w].isAlive == this.problem[h][w].isAlive) {
+                    if (answerField.field[h][w].isAlive == this.problem.field[h][w].isAlive) {
                         count++;
                     }
 
@@ -53,7 +53,7 @@ export class Questioner {
 
             answerField.updateLivesStatus();
             generation++;
-            
+
 
         }
 
