@@ -16,7 +16,10 @@ export class Field {
     }
 
     // 受け取った場所にライフを置く
-    setLife(location) { };
+    setLife(location) {
+        this.field[location.y][location.x].isAlive = true;
+        this.onChange(location, this.field[location.y][location.x]);
+    };
 
     // 受け取った場所のライフの存在、非存在を反転させる
     reverse(location) {
