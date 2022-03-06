@@ -58,7 +58,21 @@ class App {
         }
     };
 
-    judgeAnswer() { };
+    judgeAnswer() {
+        let answerInfo = questioner.judgeAnswer(this.environment._field.field);
+        clearInterval(this.environment.timer);
+        setInterval(() => {
+            let livesNum = this.environment._field.countLives();
+            if (livesNum == 0 || this.environment.generation > answerInfo.generation) {
+                this.stop();
+                this.reset();
+            } else {
+                this.environment._field.updateLivesStatus()
+                this.environment.generation++;
+                this.generationId.innerHTML = this.environment.generation;
+            }
+        }, this.updateInterval);
+    };
 
     setUpdateInterval() { };
 }
