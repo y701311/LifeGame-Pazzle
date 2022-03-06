@@ -59,7 +59,7 @@ class App {
     };
 
     judgeAnswer() {
-        let answerInfo = questioner.judgeAnswer(this.environment._field.field);
+        let answerInfo = this.questioner.judgeAnswer(this.environment._field);
         clearInterval(this.environment.timer);
         setInterval(() => {
             let livesNum = this.environment._field.countLives();
