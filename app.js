@@ -18,6 +18,8 @@ class App {
         this.updateInterval = 200;
         this.generationId = document.getElementById("generation");
 
+        this.timer = {};
+
         // 解答用の盤面のクリック時の処理
         this.answerCanvas.onClick = (x, y) => {
             this.environment._field.reverse(new Location(x, y));
@@ -61,7 +63,8 @@ class App {
     judgeAnswer() {
         let answerInfo = this.questioner.judgeAnswer(this.environment._field);
         clearInterval(this.environment.timer);
-        setInterval(() => {
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
             let livesNum = this.environment._field.countLives();
             if (livesNum == 0 || this.environment.generation > answerInfo.generation) {
                 this.stop();
