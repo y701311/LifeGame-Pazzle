@@ -49,8 +49,7 @@ class App {
     generatePloblem() { };
 
     judgeAnswer() { 
-        var c = document.getElementById('answerCanvas');
-        c.style.backgroundColor = 'lightgreen';
+        document.getElementById('pop-up').checked = true;
     };
 
     setUpdateInterval() { };

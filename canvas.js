@@ -65,8 +65,7 @@ export class Canvas {
         for (let y = 0; y <= this.height; y += this.cellSize) {
             this.drawHorizontialLine(y);
         }
-        var c = document.getElementById('answerCanvas');
-        c.style.backgroundColor = 'transparent';
+        
     };
 
     // 指定された場所のセルの状態を描画
