@@ -1,4 +1,5 @@
 import { Cell } from "./cell.js";
+import { WIDTH, HEIGHT } from "../appConfig.js";
 
 export class Field {
     constructor(width, height) {
@@ -29,7 +30,56 @@ export class Field {
 
     // 受け取った場所の周囲のライフの数を数えて返す
     countAroundLives(location) {
-        return 0;
+        let aroundLives = 0;
+        // 左
+        if (location.x >= 1) {
+            if (this.field[location.y][location.x - 1] == true) {
+                aroundLives++;
+            }
+        }
+        // 右
+        if (location.x <= WIDTH - 2) {
+            if (this.field[location.y][location.x + 1] == true) {
+                aroundLives++;
+            }
+        }
+        // 上
+        if (location.y >= 1) {
+            if (this.field[location.y - 1][location.x] == true) {
+                aroundLives++;
+            }
+        }
+        // 下
+        if (location.y <= HEIGHT - 2) {
+            if (this.field[location.y + 1][location.x] == true) {
+                aroundLives++;
+            }
+        }
+        // 左上 
+        if (location.y >= 1 && location.x >= 1) {
+            if (this.field[location.y - 1][location.x - 1] == true) {
+                aroundLives++;
+            }
+        }
+        // 右上
+        if (location.y >= 1 && location.x <= WIDTH - 2) {
+            if (this.field[location.y - 1][location.x + 1] == true) {
+                aroundLives++;
+            }
+        }
+        // 左下
+        if (location.x >= 1 && location.y <= HEIGHT - 2) {
+            if (this.field[location.y + 1][location.x - 1] == true) {
+                aroundLives++;
+            }
+        }
+        // 右下
+        if (location.x <= WIDTH - 2 && location.y <= HEIGHT - 2) {
+            if (this.field[location.y + 1][location.x + 1] == true) {
+                aroundLives++;
+            }
+        }
+        return aroundLives;
     };
 
     // 盤面のライフの数を数えて返す
