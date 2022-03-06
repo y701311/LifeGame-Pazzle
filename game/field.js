@@ -83,7 +83,17 @@ export class Field {
     };
 
     // 盤面のライフの数を数えて返す
-    countLives() { };
+    countLives() {
+        let livesNum = 0;
+        for (let y = 0; y <= HEIGHT - 1; y++) {
+            for (let x = 0; x <= WIDTH - 1; x++) {
+                if (this.field[y][x] == true) {
+                    livesNum++;
+                }
+            }
+        }
+        return livesNum;
+    };
 
     // 盤面をライフが無い状態にする
     clear() { };
