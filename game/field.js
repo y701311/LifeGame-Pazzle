@@ -131,3 +131,18 @@ export class Field {
         }
     };
 }
+
+// Fieldクラスをdeepcopyする
+export function copyField(copyTarget) {
+    let copiedField = new Field(copyTarget.width, copyTarget.height);
+
+    for (let y = 0; y < copyTarget.height; y++) {
+        for (let x = 0; x < copyTarget.width; x++) {
+            copiedField.field[y][x].isAlive = copyTarget.field[y][x].isAlive;
+            copiedField.field[y][x]._nextStatus = copyTarget.field[y][x]._nextStatus;
+        }
+    }
+    copiedField.onChange = copyTarget.onChange;
+
+    return copiedField;
+}
