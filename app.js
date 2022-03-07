@@ -51,8 +51,8 @@ class App {
     generateProblem() {
         let problem = this.questioner.generateProblem();
         let location = new Location();
-        for(let y = 0; y < HEIGHT; y++){
-            for(let x = 0; x < WIDTH; x++){
+        for (let y = 0; y < HEIGHT; y++) {
+            for (let x = 0; x < WIDTH; x++) {
                 location.x = x;
                 location.y = y;
                 this.problemCanvas.drawCell(location, problem.field[location.y][location.x]);
@@ -66,9 +66,9 @@ class App {
         clearInterval(this.timer);
         this.timer = setInterval(() => {
             let livesNum = this.environment._field.countLives();
-            if (livesNum == 0 || this.environment.generation > answerInfo.generation) {
+            if (livesNum == 0 || this.environment.generation >= answerInfo.generation) {
                 this.stop();
-                this.reset();
+                clearInterval(this.timer);
             } else {
                 this.environment._field.updateLivesStatus()
                 this.environment.generation++;
