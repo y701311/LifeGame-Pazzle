@@ -1,4 +1,6 @@
-import { Field } from "./field.js";
+import { Field, copyField } from "./field.js";
+import { Location } from "./location.js"
+import { WIDTH, HEIGHT } from "../appConfig.js"
 
 export class Questioner {
     constructor() {
@@ -6,21 +8,90 @@ export class Questioner {
         this.generationLowerLimit = 2;
         // 何世代までに問題の盤面にしなければならないか
         this.generationUpperLimit = 20;
+        // どのくらいのライフがあれば問題として成立するか
+        this.livesLowerLimit = 10;
         // 問題の盤面
-        this.ploblem = {};
+        this.problem = {};
         // 問題の解答例
         this.correctField = {};
     }
 
     // 問題を生成する
     generateProblem() {
-        return new Field();
+        let problemField = new Field(WIDTH, HEIGHT);
+        let processField = [];
+
+        while (true) {
+            problemField = this._getInitializeField();
+            processField = this._processProblem(problemField);
+            let prob = this._selectProblem(processField);
+            if (prob.selected) {
+                this.problem = prob.problem;
+                this.correctField = problemField;
+                break;
+            }
+        }
+
+        return this.problem;
+    };
+
+    // 出題する問題盤面を選ぶ
+    // 選べたらtrue、選べなかったらfalseを返す
+    _selectProblem(processField) {
+        let selected = false;
+        let problem;
+
+        if (processField.length < this.generationLowerLimit) {
+            selected = false;
+        } else {
+            selected = true;
+            problem = processField[this.generationLowerLimit - 1];
+        }
+
+        return { selected: selected, problem: problem };
+    };
+
+    _getInitializeField() {
+        let problemField = new Field(WIDTH, HEIGHT);
+        // ライフが置かれる確率の分子、分母
+        let numeratorOfLifeExistProbability = 2, denominatorOfLifeExistProbability = 10;
+        for (let h = 0; h < HEIGHT; h++) {
+            for (let w = 0; w < WIDTH; w++) {
+                let location = new Location(w, h);
+                let num = Math.floor(Math.random() * denominatorOfLifeExistProbability);
+                if (numeratorOfLifeExistProbability >= num) {
+                    problemField.setLife(location);
+                }
+            }
+        }
+        return problemField;
+    };
+
+    _processProblem(problemField) {
+        let problem = copyField(problemField);
+        // 問題盤面候補を置いておくところ
+        let processField = [];
+        for (let generation = 1; generation <= this.generationUpperLimit; generation++) {
+            processField.push(copyField(problem));
+            if (problem.countLives() == 0) {
+                if (generation <= this.generationLowerLimit) {
+                    problem = getInitializeField();
+                    generation = 1;
+                } else {
+                    break;
+                }
+            }
+            problem.updateLivesStatus();
+        }
+        return processField;
     };
 
     // 解答の正誤を判定する
     // 解答の盤面を受け取り、正解ならtrueと問題と盤面が一致する世代を、
     // 不正解ならfalseとgenerationLimitまたはgenerationLimit以下の盤面のライフが無くなる世代を返す
     judgeAnswer(answerField) {
+        let answer = copyField(answerField);
+        answer.onChange = function (location, cell) { };
         let generation = 1;
         let judge = false;
         let gene = this.generationUpperLimit;
@@ -30,30 +101,30 @@ export class Questioner {
         while (generation <= this.generationUpperLimit) {
             count = 0;
 
-            for (let h = 0; h < answerField.height; h++) {
-                for (let w = 0; w < answerField.width; w++) {
-                    if (answerField.field[h][w].isAlive == this.ploblem[h][w].isAlive) {
+            for (let h = 0; h < answer.height; h++) {
+                for (let w = 0; w < answer.width; w++) {
+                    if (answer.field[h][w].isAlive == this.problem.field[h][w].isAlive) {
                         count++;
                     }
 
                 }
             }
 
-            if ((count == answerField.width * answerField.height) && (generation >= this.generationLowerLimit)) {
+            if ((count == answer.width * answer.height) && (generation >= this.generationLowerLimit)) {
 
                 judge = true;
                 gene = generation;
                 break;
             }
 
-            if (answerField.countLives() == 0) {
+            if (answer.countLives() == 0) {
                 gene = generation;
                 break;
             }
 
-            answerField.updateLivesStatus();
+            answer.updateLivesStatus();
             generation++;
-            
+
 
         }
 
