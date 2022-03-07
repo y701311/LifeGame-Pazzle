@@ -70,6 +70,9 @@ class App {
             if (livesNum == 0 || this.environment.generation >= answerInfo.generation) {
                 this.stop();
                 clearInterval(this.timer);
+              　if (answerInfo.isCorrect) {
+                    document.getElementById('pop-up').checked = true;
+                }
             } else {
                 this.environment._field.updateLivesStatus()
                 this.environment.generation++;
