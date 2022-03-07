@@ -13,7 +13,7 @@ export class Environment {
     }
 
     // 世代の更新を開始
-    start(updateInterval, generationId) {
+    start(updateIntervalId, generationId) {
         this.generation = 1;
         clearInterval(this.timer);
         this.timer = setInterval(() => {
@@ -25,7 +25,7 @@ export class Environment {
                 this.generation++;
                 generationId.innerHTML = this.generation;
             }
-        }, updateInterval);
+        }, parseInt(updateIntervalId.value));
     };
 
     // 世代の更新を止める

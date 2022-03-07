@@ -14,8 +14,10 @@ class App {
         // ゲームを進める環境
         this.environment = new Environment(new Field(WIDTH, HEIGHT), this.answerCanvas);
         this.questioner = new Questioner();
+
         // 世代の更新頻度　何ミリ秒ごとに更新するか
-        this.updateInterval = 200;
+        this.updateIntervalId = document.getElementById("updateInterval");
+
         this.generationId = document.getElementById("generation");
 
         this.timer = {};
@@ -32,11 +34,10 @@ class App {
         document.getElementById("resetButton").addEventListener("click", () => this.reset(), false);
         document.getElementById("problemGenerateButton").addEventListener("click", () => this.generateProblem(), false);
         document.getElementById("answerButton").addEventListener("click", () => this.judgeAnswer(), false);
-        document.getElementById("updateInterval").onchange = this.setUpdateInterval();
     };
 
     start() {
-        this.environment.start(this.updateInterval, this.generationId);
+        this.environment.start(this.updateIntervalId, this.generationId);
     };
 
     stop() {
@@ -74,12 +75,9 @@ class App {
                 this.environment.generation++;
                 this.generationId.innerHTML = this.environment.generation;
             }
-        }, this.updateInterval);
+        }, parseInt(this.updateIntervalId.value));
     };
 
-    setUpdateInterval() {
-        this.updateInterval = document.getElementById("updateInterval").value;
-    };
 }
 
 function main() {
