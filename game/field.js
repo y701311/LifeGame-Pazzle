@@ -98,10 +98,14 @@ export class Field {
 
     // 盤面をライフが無い状態にする
     clear() {
+        let location = new Location();
         for (let y = 0; y <= HEIGHT - 1; y++) {
             for (let x = 0; x <= WIDTH - 1; x++) {
+                location.x = x;
+                location.y = y;
                 if (this.field[y][x].isAlive == true) {
                     this.field[y][x].isAlive = false;
+                    this.onChange(location, this.field[y][x]);
                 }
             }
         }
@@ -109,6 +113,7 @@ export class Field {
 
     // 次の世代に更新する
     updateLivesStatus() {
+        let location = new Location();
         for (let y = 0; y <= HEIGHT - 1; y++) {
             for (let x = 0; x <= WIDTH - 1; x++) {
                 let aroundLives = this.countAroundLives(new Location(x, y));
@@ -117,7 +122,10 @@ export class Field {
         }
         for (let y = 0; y <= HEIGHT - 1; y++) {
             for (let x = 0; x <= WIDTH - 1; x++) {
+                location.x = x;
+                location.y = y;
                 this.field[y][x].isAlive = this.field[y][x]._nextStatus;
+                this.onChange(location, this.field[y][x]);
             }
         }
     };
