@@ -1,4 +1,5 @@
 import { Cell } from "./cell.js";
+import { Location } from "./location.js";
 import { WIDTH, HEIGHT } from "../appConfig.js";
 
 export class Field {
