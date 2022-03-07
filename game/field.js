@@ -105,6 +105,7 @@ export class Field {
                 location.y = y;
                 if (this.field[y][x].isAlive == true) {
                     this.field[y][x].isAlive = false;
+                    this.field[y][x]._nextStatus = false;
                     this.onChange(location, this.field[y][x]);
                 }
             }
