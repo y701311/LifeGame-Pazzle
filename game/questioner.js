@@ -77,7 +77,7 @@ export class Questioner {
             processField.push(copyField(problem));
             if (problem.countLives() == 0) {
                 if (generation <= this.generationLowerLimit) {
-                    problem = getInitializeField();
+                    problem = this._getInitializeField();
                     generation = 1;
                 } else {
                     break;
