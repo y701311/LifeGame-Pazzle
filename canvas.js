@@ -1,13 +1,17 @@
 import { Location } from "./game/location.js";
-import { ALIVE, NOT_ALIVE, LINE_COLOR, LINE_WIDTH } from "./appConfig.js";
+import { ALIVE, NOT_ALIVE, CANVAS_WIDTH, CANVAS_HEIGHT, LINE_COLOR, LINE_WIDTH } from "./appConfig.js";
 
 export class Canvas {
     constructor(id, width, height) {
-        this.cellSize = 40;
+        this.xLineNum = width + 1;
+        this.yLineNum = height + 1;
+        // 小数点誤差により、CANVAS_WIDTHがwidthで割り切れないと線の描画がすこしずれる
+        this.cellSizeWidth = CANVAS_WIDTH / width;
+        this.cellSizeHeight = CANVAS_HEIGHT / height;
         this.canvas = document.getElementById(id);
         this.context = this.canvas.getContext("2d");
-        this.context.canvas.width = width * this.cellSize;
-        this.context.canvas.height = height * this.cellSize;
+        this.context.canvas.width = CANVAS_WIDTH;
+        this.context.canvas.height = CANVAS_HEIGHT;
         this.width = this.context.canvas.width;
         this.height = this.context.canvas.height;
         this.clearAll();
@@ -24,14 +28,14 @@ export class Canvas {
         let rect = e.target.getBoundingClientRect();
         let x = e.clientX - Math.floor(rect.left);
         let y = e.clientY - Math.floor(rect.top);
-        x = Math.floor(x / this.cellSize);
-        y = Math.floor(y / this.cellSize);
+        x = Math.floor(x / this.cellSizeWidth);
+        y = Math.floor(y / this.cellSizeHeight);
         return new Location(x, y);
     };
 
     drawPoint(location, color) {
         this.context.fillStyle = color;
-        this.context.fillRect(location.x * this.cellSize + 1, location.y * this.cellSize + 1, this.cellSize - 2, this.cellSize - 2);
+        this.context.fillRect(location.x * this.cellSizeWidth + 1, location.y * this.cellSizeHeight + 1, this.cellSizeWidth - 2, this.cellSizeHeight - 2);
     };
 
     // 縦の罫線を描く
@@ -59,13 +63,12 @@ export class Canvas {
     // 全てクリア
     clearAll() {
         this.context.clearRect(0, 0, this.width, this.height);
-        for (let x = 0; x <= this.width; x += this.cellSize) {
-            this.drawVirticalLine(x);
+        for (let x = 0; x < this.xLineNum; x++) {
+            this.drawVirticalLine(x * this.cellSizeWidth);
         }
-        for (let y = 0; y <= this.height; y += this.cellSize) {
-            this.drawHorizontialLine(y);
+        for (let y = 0; y < this.yLineNum; y++) {
+            this.drawHorizontialLine(y * this.cellSizeHeight);
         }
-        
     };
 
     // 指定された場所のセルの状態を描画
