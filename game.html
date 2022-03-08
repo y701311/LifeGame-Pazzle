@@ -23,11 +23,19 @@
         <div id="prob">ここに問題文を表示</div>
         <div id="gen">第<span id="generation">1</span>世代</div>
 
+        <div>
+            <select id="problemDifficulty">
+                <option value="easy">easy</option>
+                <option value="normal" selected>normal</option>
+                <option value="hard">hard</option>
+            </select>
+        </div>
+
         <div id="ms">
             <select id="updateInterval">
-            <option value="100">100</option>
-            <option value="200" selected>200</option>
-            <option value="500">500</option>
+                <option value="100">100</option>
+                <option value="200" selected>200</option>
+                <option value="500">500</option>
             </select>
             ms
         </div>
@@ -43,11 +51,11 @@
         </div>
         <input type="checkbox" id="pop-up">
         <div class="overlay">
-	        <div class="window">
-	        	<label class="close" for="pop-up">閉じる</label>
-	    	    <h4>正解</h4>
-	    	    <p>お見事!</p>
-    	    </div>
+            <div class="window">
+                <label class="close" for="pop-up">閉じる</label>
+                <h4>正解</h4>
+                <p>お見事!</p>
+            </div>
         </div>
     </div>
 
