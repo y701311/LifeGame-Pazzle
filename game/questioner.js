@@ -8,8 +8,10 @@ export class Questioner {
         this.generationLowerLimit = 2;
         // 何世代までに問題の盤面にしなければならないか
         this.generationUpperLimit = 20;
-        // どのくらいのライフがあれば問題として成立するか
+        // 問題の盤面に必要なライフ数の下限
         this.livesLowerLimit = 10;
+        // 問題の盤面に必要なライフ数の上限
+        this.livesUpperLimit = 20;
         // 問題の盤面
         this.problem = {};
         // 問題の解答例
