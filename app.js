@@ -7,6 +7,10 @@ import { WIDTH, HEIGHT } from "./appConfig.js";
 
 class App {
     constructor() {
+        this.problemDifficultyId = document.getElementById("problemDifficulty");
+        this.problemDifficultyId.addEventListener("change", () => this.changeDifficulty(), false);
+        this.changeDifficulty();
+
         // 問題の盤面
         this.problemCanvas = new Canvas("problemCanvas", WIDTH, HEIGHT);
         // 解答用の盤面
@@ -79,6 +83,16 @@ class App {
                 this.generationId.innerHTML = this.environment.generation;
             }
         }, parseInt(this.updateIntervalId.value));
+    };
+
+    changeDifficulty() {
+        if (this.problemDifficultyId.value == "easy") {
+
+        } else if (this.problemDifficultyId.value == "normal") {
+
+        } else if (this.problemDifficultyId.value == "hard") {
+
+        }
     };
 
 }
