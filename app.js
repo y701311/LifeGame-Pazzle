@@ -57,11 +57,31 @@ class App {
         this.environment.reset(this.generationId);
     };
 
-    generationAdvance() { };
+    generationAdvance() {
+        this.environment.generationAdvance(this.generationId);
+    };
 
-    generationRetreat() { };
+    generationRetreat() {
+        this.environment.generationRetreat(this.generationId);
+        let location = new Location();
+        for (let y = 0; y < this.environment._field.height; y++) {
+            for (let x = 0; x < this.environment._field.width; x++) {
+                location.x = x, location.y = y;
+                this.environment._field.onChange(location, this.environment._field.field[y][x]);
+            }
+        }
+    };
 
-    generationReset() { };
+    generationReset() {
+        this.environment.generationReset(this.generationId);
+        let location = new Location();
+        for (let y = 0; y < this.environment._field.height; y++) {
+            for (let x = 0; x < this.environment._field.width; x++) {
+                location.x = x, location.y = y;
+                this.environment._field.onChange(location, this.environment._field.field[y][x]);
+            }
+        }
+    };
 
     generateProblem() {
         let problem = this.questioner.generateProblem();
