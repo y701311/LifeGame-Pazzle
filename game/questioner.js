@@ -43,12 +43,23 @@ export class Questioner {
     _selectProblem(processField) {
         let selected = false;
         let problem;
+        let legalField = [];
 
         if (processField.length < this.generationLowerLimit) {
             selected = false;
         } else {
-            selected = true;
-            problem = processField[this.generationLowerLimit - 1];
+            for (let index = this.generationLowerLimit - 1; index < processField.length; index++) {
+                let livesNum = processField[index].countLives();
+                if (this.livesLowerLimit <= livesNum && livesNum <= this.livesUpperLimit) {
+                    legalField.push(copyField(processField[index]));
+                }
+            }
+            if (legalField.length > 0) {
+                selected = true;
+                problem = legalField[Math.floor(legalField.length * Math.random())];
+            } else {
+                selected = false;
+            }
         }
 
         return { selected: selected, problem: problem };
