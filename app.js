@@ -17,6 +17,9 @@ class App {
 
         this.questioner;
 
+        // 問題文
+        this.problemStatementId = document.getElementById("prob");
+
         this.problemDifficultyId = document.getElementById("problemDifficulty");
         this.problemDifficultyId.addEventListener("change", () => this.changeDifficulty(), false);
         this.changeDifficulty();
@@ -87,12 +90,15 @@ class App {
 
     changeDifficulty() {
         if (this.problemDifficultyId.value == "easy") {
+            this.problemStatementId.innerHTML = "第2世代で問題と同じにせよ！";
             this._setState(6, 6, 2, 2, 2, 4);
             this.generateProblem();
         } else if (this.problemDifficultyId.value == "normal") {
+            this.problemStatementId.innerHTML = "第2世代で問題と同じにせよ！";
             this._setState(6, 6, 2, 2, 5, 8);
             this.generateProblem();
         } else if (this.problemDifficultyId.value == "hard") {
+            this.problemStatementId.innerHTML = "第2世代で問題と同じにせよ！";
             this._setState(10, 10, 2, 2, 20, 30);
             this.generateProblem();
         }
