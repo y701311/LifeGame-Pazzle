@@ -64,6 +64,8 @@ class App {
     };
 
     judgeAnswer() {
+        this.environment.generation = 1;
+        this.generationId.innerHTML = this.environment.generation;
         let answerInfo = this.questioner.judgeAnswer(this.environment._field);
         clearInterval(this.environment.timer);
         clearInterval(this.timer);
