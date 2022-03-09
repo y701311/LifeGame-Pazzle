@@ -118,7 +118,6 @@ function main() {
     window.onload = function () {
         let app = new App();
         app.run();
-        app.generateProblem();
     };
 }
 
