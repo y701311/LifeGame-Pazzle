@@ -1,9 +1,10 @@
 import { Field, copyField } from "./field.js";
 import { Location } from "./location.js"
-import { WIDTH, HEIGHT } from "../appConfig.js"
 
 export class Questioner {
-    constructor() {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
         // 何世代以上で問題の盤面にしなければならないか
         this.generationLowerLimit = 2;
         // 何世代までに問題の盤面にしなければならないか
@@ -20,7 +21,7 @@ export class Questioner {
 
     // 問題を生成する
     generateProblem() {
-        let problemField = new Field(WIDTH, HEIGHT);
+        let problemField = new Field(this.width, this.height);
         let processField = [];
 
         while (true) {
@@ -54,11 +55,11 @@ export class Questioner {
     };
 
     _getInitializeField() {
-        let problemField = new Field(WIDTH, HEIGHT);
+        let problemField = new Field(this.width, this.height);
         // ライフが置かれる確率の分子、分母
         let numeratorOfLifeExistProbability = 2, denominatorOfLifeExistProbability = 10;
-        for (let h = 0; h < HEIGHT; h++) {
-            for (let w = 0; w < WIDTH; w++) {
+        for (let h = 0; h < this.height; h++) {
+            for (let w = 0; w < this.width; w++) {
                 let location = new Location(w, h);
                 let num = Math.floor(Math.random() * denominatorOfLifeExistProbability);
                 if (numeratorOfLifeExistProbability >= num) {
