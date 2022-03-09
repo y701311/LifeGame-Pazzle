@@ -37,6 +37,9 @@ class App {
         document.getElementById("startButton").addEventListener("click", () => this.start(), false);
         document.getElementById("stopButton").addEventListener("click", () => this.stop(), false);
         document.getElementById("resetButton").addEventListener("click", () => this.reset(), false);
+        document.getElementById("generationAdvanceButton").addEventListener("click", () => this.generationAdvance(), false);
+        document.getElementById("generationRetreatButton").addEventListener("click", () => this.generationRetreat(), false);
+        document.getElementById("generationResetButton").addEventListener("click", () => this.generationReset(), false);
         document.getElementById("problemGenerateButton").addEventListener("click", () => this.generateProblem(), false);
         document.getElementById("answerButton").addEventListener("click", () => this.judgeAnswer(), false);
     };
@@ -53,6 +56,12 @@ class App {
         this.environment.stop();
         this.environment.reset(this.generationId);
     };
+
+    generationAdvance() { };
+
+    generationRetreat() { };
+
+    generationReset() { };
 
     generateProblem() {
         let problem = this.questioner.generateProblem();
