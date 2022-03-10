@@ -89,6 +89,10 @@ class App {
     };
 
     judgeAnswer() {
+        // 操作が加わっていたらクリック不可に
+        if (this.environment.generation != 1 || this.environment._field.isBlank() == false) {
+            this.environment._canvas.clickFlag = false;
+        }
         this.environment.generation = 1;
         this.generationId.innerHTML = this.environment.generation;
         let answerInfo = this.questioner.judgeAnswer(this.environment._field);
