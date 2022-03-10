@@ -18,6 +18,10 @@ export class Environment {
 
     // 世代の更新を開始
     start(updateIntervalId, generationId) {
+        // 操作が加わっていたらクリック不可に
+        if (this.generation != 1 || this._field.isBlank() == false) {
+            this._canvas.clickFlag = false;
+        }
         this.generation = 1;
         clearInterval(this.timer);
         this.timer = setInterval(() => {
@@ -40,6 +44,7 @@ export class Environment {
 
     // フィールドのライフを全て消す
     reset(generationId) {
+        this._canvas.clickFlag = true;
         this.generation = 1;
         generationId.innerHTML = this.generation;
         this.pastField = [];
@@ -49,6 +54,7 @@ export class Environment {
 
     // 1世代進める
     generationAdvance(generationId) {
+        this._canvas.clickFlag = false;
         clearInterval(this.timer);
         let livesNum = this._field.countLives();
         if (livesNum != 0) {
@@ -62,6 +68,9 @@ export class Environment {
     // 1世代戻す
     generationRetreat(generationId) {
         if (this.generation > 1) {
+            if (this.generation == 2) {
+                this._canvas.clickFlag = true;
+            }
             clearInterval(this.timer);
             this._field = this.pastField.pop();
             this.generation--;
@@ -71,6 +80,7 @@ export class Environment {
 
     // 1世代に戻す
     generationReset(generationId) {
+        this._canvas.clickFlag = true;
         clearInterval(this.timer);
         if (this.pastField.length > 0) {
             this._field = this.pastField[0];

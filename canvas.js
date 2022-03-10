@@ -16,11 +16,14 @@ export class Canvas {
         this.height = this.context.canvas.height;
         this.clearAll();
 
+        this.clickFlag = true;
         this.onClick = function (x, y) { };
 
         this.canvas.onclick = (e) => {
             let point = this.getPoint(e);
-            this.onClick(point.x, point.y);
+            if (this.clickFlag) {
+                this.onClick(point.x, point.y);
+            }
         };
     }
 
