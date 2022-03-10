@@ -84,15 +84,8 @@ class App {
     };
 
     generateProblem() {
-        let problem = this.questioner.generateProblem();
-        let location = new Location();
-        for (let y = 0; y < this.width; y++) {
-            for (let x = 0; x < this.height; x++) {
-                location.x = x;
-                location.y = y;
-                this.problemCanvas.drawCell(location, problem.field[location.y][location.x]);
-            }
-        }
+        let problem = this.questioner.generateProblem(this.problemDifficultyId.value);
+        this._drawProblem(problem);
     };
 
     judgeAnswer() {
@@ -118,7 +111,11 @@ class App {
     };
 
     changeDifficulty() {
-        if (this.problemDifficultyId.value == "easy") {
+        if (this.problemDifficultyId.value == "tutorial") {
+            this.problemStatementId.innerHTML = "第2世代で問題と同じにせよ！";
+            this._setState(3, 3, 2, 2, 1, 9);
+            this.generateProblem();
+        } else if (this.problemDifficultyId.value == "easy") {
             this.problemStatementId.innerHTML = "第2世代で問題と同じにせよ！";
             this._setState(6, 6, 2, 2, 2, 4);
             this.generateProblem();
@@ -151,6 +148,17 @@ class App {
         this.answerCanvas.onClick = (x, y) => {
             this.environment._field.reverse(new Location(x, y));
         };
+    };
+
+    _drawProblem(problem) {
+        let location = new Location();
+        for (let y = 0; y < this.width; y++) {
+            for (let x = 0; x < this.height; x++) {
+                location.x = x;
+                location.y = y;
+                this.problemCanvas.drawCell(location, problem.field[location.y][location.x]);
+            }
+        }
     };
 
 }

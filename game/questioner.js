@@ -17,21 +17,27 @@ export class Questioner {
         this.problem = {};
         // 問題の解答例
         this.correctField = {};
+
+        this.tutorialProblemId = 0;
     }
 
     // 問題を生成する
-    generateProblem() {
-        let problemField = new Field(this.width, this.height);
-        let processField = [];
+    generateProblem(difficulty) {
+        if (difficulty == "tutorial") {
+            return this._generateTutorialProblem();
+        } else {
+            let problemField = new Field(this.width, this.height);
+            let processField = [];
 
-        while (true) {
-            problemField = this._getInitializeField();
-            processField = this._processProblem(problemField);
-            let prob = this._selectProblem(processField);
-            if (prob.selected) {
-                this.problem = prob.problem;
-                this.correctField = problemField;
-                break;
+            while (true) {
+                problemField = this._getInitializeField();
+                processField = this._processProblem(problemField);
+                let prob = this._selectProblem(processField);
+                if (prob.selected) {
+                    this.problem = prob.problem;
+                    this.correctField = problemField;
+                    break;
+                }
             }
         }
 
@@ -146,5 +152,64 @@ export class Questioner {
         return { isCorrect: judge, generation: gene };
 
 
+    };
+
+    // tutorial用の問題を生成する
+    _generateTutorialProblem() {
+        this.problem = new Field(this.width, this.height);
+        this.correctField = new Field(this.width, this.height);
+        // 問題の数
+        let problemNum = 4;
+
+        if (this.tutorialProblemId == 0) {
+            this.problem.setLife(new Location(1, 1));
+            this.problem.setLife(new Location(1, 2));
+            this.correctField.setLife(new Location(0, 1));
+            this.correctField.setLife(new Location(2, 1));
+            this.correctField.setLife(new Location(1, 2));
+        } else if (this.tutorialProblemId == 1) {
+            this.problem.setLife(new Location(1, 1));
+            this.problem.setLife(new Location(2, 1));
+            this.problem.setLife(new Location(1, 2));
+            this.problem.setLife(new Location(2, 2));
+            this.correctField.setLife(new Location(2, 1));
+            this.correctField.setLife(new Location(1, 2));
+            this.correctField.setLife(new Location(2, 2));
+        } else if (this.tutorialProblemId == 2) {
+            this.problem.setLife(new Location(0, 0));
+            this.problem.setLife(new Location(2, 0));
+            this.problem.setLife(new Location(0, 2));
+            this.problem.setLife(new Location(2, 2));
+            this.correctField.setLife(new Location(0, 0));
+            this.correctField.setLife(new Location(1, 0));
+            this.correctField.setLife(new Location(2, 0));
+            this.correctField.setLife(new Location(0, 1));
+            this.correctField.setLife(new Location(1, 1));
+            this.correctField.setLife(new Location(2, 1));
+            this.correctField.setLife(new Location(0, 2));
+            this.correctField.setLife(new Location(1, 2));
+            this.correctField.setLife(new Location(2, 2));
+        } else if (this.tutorialProblemId == 3) {
+            this.problem.setLife(new Location(0, 0));
+            this.problem.setLife(new Location(1, 0));
+            this.problem.setLife(new Location(2, 0));
+            this.problem.setLife(new Location(0, 1));
+            this.problem.setLife(new Location(2, 1));
+            this.problem.setLife(new Location(0, 2));
+            this.problem.setLife(new Location(1, 2));
+            this.problem.setLife(new Location(2, 2));
+            this.correctField.setLife(new Location(1, 0));
+            this.correctField.setLife(new Location(0, 1));
+            this.correctField.setLife(new Location(1, 1));
+            this.correctField.setLife(new Location(2, 1));
+            this.correctField.setLife(new Location(1, 2));
+        }
+
+        this.tutorialProblemId++;
+        if (this.tutorialProblemId >= problemNum) {
+            this.tutorialProblemId = 0;
+        }
+
+        return this.problem;
     };
 }
