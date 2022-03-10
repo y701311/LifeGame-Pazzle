@@ -95,6 +95,19 @@ export class Field {
         return livesNum;
     };
 
+    // 盤面にライフが1つも無いか
+    isBlank() {
+        let isBlank = true;
+        for (let y = 0; y <= this.height - 1; y++) {
+            for (let x = 0; x <= this.width - 1; x++) {
+                if (this.field[y][x].isAlive == true) {
+                    isBlank = false;
+                }
+            }
+        }
+        return isBlank;
+    }
+
     // 盤面をライフが無い状態にする
     clear() {
         let location = new Location();
