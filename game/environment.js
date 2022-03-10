@@ -22,7 +22,6 @@ export class Environment {
         if (this.generation != 1 || this._field.isBlank() == false) {
             this._canvas.clickFlag = false;
         }
-        this.generation = 1;
         clearInterval(this.timer);
         this.timer = setInterval(() => {
             let livesNum = this._field.countLives();
