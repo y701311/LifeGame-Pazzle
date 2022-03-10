@@ -130,6 +130,10 @@ class App {
             this.problemStatementId.innerHTML = "第2世代で問題と同じにせよ！";
             this._setState(10, 10, 2, 2, 20, 30);
             this.generateProblem();
+        } else if (this.problemDifficultyId.value == "expert") {
+            this.problemStatementId.innerHTML = "第3世代～第5世代で問題と同じにせよ！";
+            this._setState(15, 15, 3, 5, 30, 40);
+            this.generateProblem();
         }
     };
 
