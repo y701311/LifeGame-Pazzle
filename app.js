@@ -1,6 +1,6 @@
 import { Canvas } from "./canvas.js";
 import { Environment } from "./game/environment.js";
-import { Field } from "./game/field.js";
+import { Field, copyField } from "./game/field.js";
 import { Location } from "./game/location.js";
 import { Questioner } from "./game/questioner.js";
 
@@ -93,6 +93,7 @@ class App {
         if (this.environment.generation != 1 || this.environment._field.isBlank() == false) {
             this.environment._canvas.clickFlag = false;
         }
+        this.environment.pastField = [];
         this.environment.generation = 1;
         this.generationId.innerHTML = this.environment.generation;
         let answerInfo = this.questioner.judgeAnswer(this.environment._field);
@@ -107,6 +108,7 @@ class App {
                     document.getElementById('pop-up').checked = true;
                 }
             } else {
+                this.environment.pastField.push(copyField(this.environment._field));
                 this.environment._field.updateLivesStatus()
                 this.environment.generation++;
                 this.generationId.innerHTML = this.environment.generation;
