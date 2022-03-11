@@ -137,6 +137,10 @@ class App {
             this.problemStatementId.innerHTML = "第3世代～第5世代で問題と同じにせよ！";
             this._setState(15, 15, 3, 5, 30, 40);
             this.generateProblem();
+        } else if (this.problemDifficultyId.value == "present") {
+            this.problemStatementId.innerHTML = "第2世代で問題と同じにせよ！";
+            this._setState(6, 6, 2, 2, 1, 36);
+            this.generateProblem();
         }
     };
 

@@ -25,6 +25,8 @@ export class Questioner {
     generateProblem(difficulty) {
         if (difficulty == "tutorial") {
             return this._generateTutorialProblem();
+        } else if (difficulty == "present") {
+            return this._generatePresentProblem();
         } else {
             let problemField = new Field(this.width, this.height);
             let processField = [];
@@ -209,6 +211,21 @@ export class Questioner {
         if (this.tutorialProblemId >= problemNum) {
             this.tutorialProblemId = 0;
         }
+
+        return this.problem;
+    };
+
+    _generatePresentProblem() {
+        this.problem = new Field(this.width, this.height);
+        this.correctField = new Field(this.width, this.height);
+
+        this.problem.setLife(new Location(1, 1));
+        this.problem.setLife(new Location(3, 1));
+        this.problem.setLife(new Location(1, 3));
+        this.problem.setLife(new Location(4, 3));
+        this.problem.setLife(new Location(2, 4));
+        this.problem.setLife(new Location(3, 4));
+        this.problem.setLife(new Location(4, 4));
 
         return this.problem;
     };
