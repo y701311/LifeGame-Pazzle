@@ -33,11 +33,17 @@
 }
 
 #under{
-    
+    display: flex;
 }
 
 #left{
+    margin-top: -40px;
+    margin-left: 3%;
+}
 
+img.pic{
+    width: 108px;
+    height: 220px;
 }
 
 #center{
@@ -46,7 +52,9 @@
 }
 
 #right{
-    
+    float: right;
+    margin-top: -40px;
+    margin-right: 3%;
 }
 
 
