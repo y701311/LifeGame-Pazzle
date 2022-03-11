@@ -4,33 +4,51 @@
     justify-content: center;
 }
 
+#canv{
+    display: flex; 
+    justify-content: center;
+}
+
 .button{
     cursor:pointer;
-    width:150px;
-    height: 50px;
-    margin: 5px 10px;
+    width:130px;
+    height: 40px;
+    margin: 5px 5px;
 }
 
-#problemCanvas{
-    position: absolute;
-    top: 10vh;
-    right:52%;
-}
-
-#answerCanvas{
-    position: absolute;
-    top: 10vh;
-    left:52%;
+.canvas{
+    text-align: center;
+    margin: 10px;
+    width: 510px;
+    display: inline-block;
 }
 
 #user{
     text-align: center;
-    margin:  73vh auto 0;
+
 }
 
 #ms{
     font-size: 80%;
 }
+
+#under{
+    
+}
+
+#left{
+
+}
+
+#center{
+    width: 50%; 
+    margin: 0 auto;
+}
+
+#right{
+    
+}
+
 
 .open {
 	cursor:pointer;

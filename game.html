@@ -4,20 +4,23 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./game.css">
-    <title>test</title>
+    <title>Pufellzzie</title>
 </head>
 
 <body>
     <div id="tit">
-        ライフゲーム
+        Pufellzzie
     </div>
-    <div style="font-size: 100%;">
-        <p style="display: inline; position: absolute; right:69%;">問題</p>
-        <p style="display: inline; position: absolute; left: 69%;">回答欄</p>
-    </div>
-    <div>
-        <canvas id="problemCanvas"></canvas>
-        <canvas id="answerCanvas"></canvas>
+    <div id="canv">
+        <div class="canvas">
+            <p>問題</p>
+            <canvas id="problemCanvas"></canvas>
+        </div>
+        <div class="canvas">
+            <p>回答欄</p>
+            <canvas id="answerCanvas"></canvas>
+        </div>
+        
     </div>
     <div id="user">
         <div id="prob">ここに問題文を表示</div>
@@ -41,27 +44,42 @@
             </select>
             ms
         </div>
+        <div id="under">
+            <div id="left">
 
-        <div>
-            <input class="button" type="button" value="start" id="startButton">
-            <input class="button" type="button" value="stop" id="stopButton">
-            <input class="button" type="button" value="reset" id="resetButton">
+            </div>
+            <div id="center">
+                <div>
+                    <input class="button" type="button" value="start" id="startButton">
+                    <input class="button" type="button" value="stop" id="stopButton">
+                    <input class="button" type="button" value="reset" id="resetButton">
+                </div>
+                <div>
+                    <input class="button" type="button" value="1世代進める" id="generationAdvanceButton">
+                    <input class="button" type="button" value="1世代戻す" id="generationRetreatButton">
+                    <input class="button" type="button" value="第1世代に戻す" id="generationResetButton">
+                </div>
+                <div>
+                    <input class="button" type="button" value="問題をセット" id="problemGenerateButton">
+                    <input class="button" type="button" value="解答" id="answerButton">
+                </div>
+            </div>
+            <div id="right">
+                
+            </div>
         </div>
-        <div>
-            <input class="button" type="button" value="1世代進める" id="generationAdvanceButton">
-            <input class="button" type="button" value="1世代戻す" id="generationRetreatButton">
-            <input class="button" type="button" value="第1世代に戻す" id="generationResetButton">
-        </div>
-        <div>
-            <input class="button" type="button" value="問題をセット" id="problemGenerateButton">
-            <input class="button" type="button" value="解答" id="answerButton">
-        </div>
+        
         <input type="checkbox" id="pop-up">
         <div class="overlay">
             <div class="window">
                 <label class="close" for="pop-up">閉じる</label>
                 <h4>正解</h4>
-                <p>お見事!</p>
+                <p>
+                    お見事!<br><br>
+                    遊んでくれてありがとう<br>
+                    他の問題をプレイする時は<br>
+                    [問題をセット]をクリック！
+                </p>
             </div>
         </div>
     </div>

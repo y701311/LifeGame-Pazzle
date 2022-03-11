@@ -2,7 +2,7 @@
 export const ALIVE = "#204080", NOT_ALIVE = "#FFFFFF";
 
 // Canvasのピクセル単位での大きさ
-export const CANVAS_WIDTH = 600, CANVAS_HEIGHT = 600;
+export const CANVAS_WIDTH = 510, CANVAS_HEIGHT = 510;
 // Canvasの線の色
 export const LINE_COLOR = "#262626"
 // Canvasの線の太さ
